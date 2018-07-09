@@ -137,22 +137,17 @@ public class LawtTomcat {
         try {
             server = new ServerSocket(this.port);
 
-            System.out.println("GP Tomcat 已启动，监听端口是：" + this.port);
+            System.out.println("my Tomcat already succeed start，the port is " + this.port);
 
         } catch (IOException e) {
-//			e.printStackTrace();
-            System.out.println("GP Tomcat 启动失败，" + e.getMessage());
+            System.out.println("my Tomcat failed start，" + e.getMessage());
             return;
         }
-
+        //先暂时写个死循环，保证容器能够持续提供服务了
         while (true) {
-
-            //容器能够持续提供服务了
             try {
                 Socket client = server.accept();
-
                 process(client);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
